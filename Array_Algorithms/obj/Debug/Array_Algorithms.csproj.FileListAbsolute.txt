@@ -1,0 +1,6 @@
+C:\Users\danie\Downloads\WorkingOn_\Array_Algorithms\bin\Debug\Array_Algorithms.exe
+C:\Users\danie\Downloads\WorkingOn_\Array_Algorithms\bin\Debug\Array_Algorithms.pdb
+C:\Users\danie\Downloads\WorkingOn_\Array_Algorithms\obj\Debug\Array_Algorithms.csproj.AssemblyReference.cache
+C:\Users\danie\Downloads\WorkingOn_\Array_Algorithms\obj\Debug\Array_Algorithms.csproj.CoreCompileInputs.cache
+C:\Users\danie\Downloads\WorkingOn_\Array_Algorithms\obj\Debug\Array_Algorithms.exe
+C:\Users\danie\Downloads\WorkingOn_\Array_Algorithms\obj\Debug\Array_Algorithms.pdb
