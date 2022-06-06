@@ -12,6 +12,9 @@ namespace Array_Algorithms
 
         static void Main(string[] args)
         {
+            //Some change to the console letters on the console.
+            Console.ForegroundColor = ConsoleColor.Green;
+            //
             int controlswitch;
             //Due to the nature of this application wee need to create an instance of the class to use the methods we have coded.
             var MethodsBoy = new Program();
@@ -33,6 +36,10 @@ namespace Array_Algorithms
                         break;
 
                     case 4:
+                        MethodsBoy.BinarySearch();
+                        break;
+                    case 5:
+                        Environment.Exit(0);
                         break;
                     default:
                       
@@ -147,19 +154,44 @@ namespace Array_Algorithms
         //Binary search O(log N)
         private void BinarySearch()
         {
-            Console.WriteLine("\tWhich number are you looking for? ");
+         
+            //Some new interaction to retrive the index and confirm that the value requested is found and the array.
+            Console.WriteLine("\n\tWell, this is the array you got so far! Is has been sorted due to ");
+            Console.WriteLine("\twe needed this way to get out Binary search algorithm to work! ");
+            showArrayUp();
+            SelectionSort();
+            Console.WriteLine();
+            Console.Write("\tWhich number are you looking for? Type it: ");
             int target = int.Parse(Console.ReadLine());
-            int low, high;
-            low = 0;
-            high = integersArray.Length;
-
-            while (low<= high)
+            bool doesExist = integersArray.Where(x => x == target).Any();
+            if (doesExist)
             {
-                int mid = (int)Math.Round(05 * (float)(low + high));
-                if (integersArray[mid] > target) high = mid - 1;
-                else if (integersArray[mid] < target) low = mid + 1;
-                else if (integersArray[mid] == target) Console.WriteLine($"\tThe value you are looking for, it's in index = {mid} ");
+                //Not from here its where we start the search algorithm,
+                int low, high;
+                low = 0;
+                high = integersArray.Length-1;
 
+                while (low <= high)
+                {
+                    int mid = (int)Math.Round(0.5 * (low + high));
+                    if (integersArray[mid] > target) high = mid - 1;
+                    else if (integersArray[mid] < target) low = mid + 1;
+                    else if (integersArray[mid] == target)
+                    {
+                        Console.WriteLine($"\tThe value you are looking for is {integersArray[mid]}, it's in index = {mid} ");
+                        Console.ReadKey();
+                        break;
+                    }
+
+                }
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("That number wasn't found in the array, please try again");
+                Console.WriteLine("Press <<enter>> to get back...");
+                Console.ReadKey();
+                return;
             }
 
             
