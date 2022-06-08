@@ -32,7 +32,7 @@ namespace Array_Algorithms
                         break;
 
                     case 3:
-                        MethodsBoy.BinarySearch();
+                        MethodsBoy.InsertionSort();
                         break;
 
                     case 4:
@@ -70,8 +70,8 @@ namespace Array_Algorithms
                 Console.WriteLine($"\t°                                          °");
                 Console.WriteLine($"\t°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°");
                 Console.WriteLine($"\t°         1. New Array.                    °");
-                Console.WriteLine($"\t°         2. Sort                          °");
-                Console.WriteLine($"\t°         3. Sorted Insert                 °");
+                Console.WriteLine($"\t°         2. Selection Sort O(n^2)         °");
+                Console.WriteLine($"\t°         3. Insertion Sort O(log N)       °");
                 Console.WriteLine($"\t°         4. Binary Search                 °");
                 Console.WriteLine($"\t°         5. Exit                          °");
                 Console.WriteLine($"\t°                                          °");
@@ -151,6 +151,25 @@ namespace Array_Algorithms
             }
         }
 
+        private void InsertionSort()
+        {
+            //The first loop helps us to fix the first element of the array and give birth the its sorted part.
+            for (int current = 1; current < integersArray.Length; current++)
+            {
+                //Between this for loop will have to start to shrink the unsorted part of the array.
+                //Check as the control variable of our currents position and the index that will be used to perform the swaps needed.
+                int Check = current;
+                while ((Check > 0) && (integersArray[Check]<integersArray[Check-1]))
+                {
+                    int swap = integersArray[Check - 1];
+                    integersArray[Check - 1] = integersArray[Check];
+                    integersArray[Check] = swap;
+                    Check--;
+                }
+            }
+            
+        }
+
         //Binary search O(log N)
         private void BinarySearch()
         {
@@ -164,16 +183,31 @@ namespace Array_Algorithms
             Console.Write("\tWhich number are you looking for? Type it: ");
             int target = int.Parse(Console.ReadLine());
             bool doesExist = integersArray.Where(x => x == target).Any();
+
+            /*Binary  search is a strategy for solving a guessing game. When you have an array that is sorted,
+                * you can use the binary search strategy to search for a particular value in that Array:
+                * 
+                * 1. Pick an array index in the middle of the guessing interval.
+                * 
+                * 2. if the number you're seeking isn0t at that array index, use the number stored at that array index
+                * to shrink the guessing interval as much as possible.
+                */
+
             if (doesExist)
             {
-                //Not from here its where we start the search algorithm,
+               
+                //These varibles will save the upper and lower indexes of our interval.
                 int low, high;
                 low = 0;
                 high = integersArray.Length-1;
-
+                //This loop will repeat until the if clause where the element in our array matches the target given by our user.
                 while (low <= high)
                 {
+
+                    //We give to mid the middle index of the array.
                     int mid = (int)Math.Round(0.5 * (low + high));
+                    //The first clause  makes the guessing interval shrink to the lower bound, because the target might be less than 
+                    // the half of the array that will not be searched.
                     if (integersArray[mid] > target) high = mid - 1;
                     else if (integersArray[mid] < target) low = mid + 1;
                     else if (integersArray[mid] == target)
